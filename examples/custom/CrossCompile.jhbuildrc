@@ -1,0 +1,69 @@
+# -*- mode: python -*-
+# -*- coding: utf-8 -*-
+# edit this file to match your settings and copy it to ~/.config/jhbuildrc
+
+# 使用此config文件前先执行下面命令设置系统环境变量
+# $ mkdir -p ~/arm
+# # cat >> /etc/profile.d/gtk.sh << "EOF"
+# export CROSS_COMPILE=arm-linux-gnu-
+# export DISCIMAGE=/home/fedora/arm
+# EOF
+
+# if you have a GNOME git account, uncomment this line
+# repos['git.gnome.org'] = 'ssh://user@git.gnome.org/git/'
+use_local_modulesets = True
+moduleset = [ 'gnome2/gnome-2.32' ]
+modules = [ 'gtk+-3' ]
+
+# All module sources will be in $HOME/spice/ after the checkout
+checkoutroot = os.path.join(os.environ['HOME'], 'sources', 'git')
+
+# All module binaries will be in $HOME/arm/usr/local after the checkout
+prefix = os.path.join(os.environ['HOME'], 'arm', 'usr', 'local')
+os.environ['ACLOCAL'] = 'aclocal -I ' + os.path.join(prefix, 'share', 'aclocal')
+os.environ['PKG_CONFIG_PATH'] = os.path.join(prefix, 'lib', 'pkgconfig') \
+    + ':' + os.path.join(prefix, 'lib64', 'pkgconfig') \
+    + ':' + os.path.join(prefix, 'share', 'pkgconfig')
+os.environ['INSTALL'] = os.path.expanduser('~/bin/install-check')
+
+# custom CFLAGS / environment pieces for the build
+os.environ['CFLAGS'] =  '-g -I' + os.path.join(prefix, 'include')
+os.environ['CPPFLAGS'] = '-g -I' + os.path.join(prefix, 'include')
+
+#rpath is relative to where it is run from - DISCIMAGE 
+os.environ['LDFLAGS'] = ' -L' + os.path.join(prefix, 'lib')
+os.environ['LDFLAGS'] += ' -Wl,--rpath -Wl,' + os.path.join('usr', 'local', 'lib') 
+os.environ['LDFLAGS'] += ' -L' + os.path.join(prefix, 'lib64') 
+os.environ['LDFLAGS'] += ' -Wl,--rpath -Wl,' + os.path.join('usr', 'local', 'lib64')
+
+# Setup environment for cross compiling
+os.environ['BUILD'] = 'x86_64-unknown-linux-gnu'
+os.environ['HOST'] = 'arm-linux-gnu'
+os.environ['TARGET'] = 'arm-linux-gnu'
+cross_compile_prefix = os.environ['CROSS_COMPILE']
+tools = {'ADDR2LINE': 'addr2line',
+    'AS': 'as', 'CC': 'gcc', 'CPP': 'cpp',
+    'CPPFILT': 'c++filt', 'CXX': 'g++',
+    'GCOV': 'gcov', 'LD': 'ld', 'NM': 'nm',
+    'OBJCOPY': 'objcopy', 'OBJDUMP': 'objdump',
+    'READELF': 'readelf', 'SIZE': 'size',
+    'STRINGS': 'strings', 'AR': 'ar', 
+        'RANLIB': 'ranlib', 'STRIP': 'strip'}
+tools_args = str()
+for tool in tools.keys():
+    fullpath_tool = cross_compile_prefix + tools[tool]
+    os.environ[tool] = fullpath_tool
+autogenargs = ' --disable-static'
+
+# lots of people really like to always look in /var/log, but change if
+# you want the log files out of place
+autogenargs += ' --with-log-dir=/var/log'
+autogenargs += ' --build='+os.environ['BUILD']
+autogenargs += ' --host='+os.environ['HOST']
+autogenargs += ' --target='+os.environ['TARGET']
+for tool in ('AR', 'RANLIB', 'STRIP', 'AS', 'OBJDUMP', 'NM'):
+    autogenargs += ' '+tool+'="'+os.environ[tool]+'" '
+
+# Additional flags for make can be specified here
+# Set makeargs to 'V=1' for verbose build output.
+# makeargs = '-j8'

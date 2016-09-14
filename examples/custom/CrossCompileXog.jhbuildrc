@@ -1,0 +1,75 @@
+#!python
+#######################################################################################
+# This is a checkout and build configuration for building Xorg
+#
+# This can be copied to ~/.jhbuildrc  and then run 'jhbuild build xserver'
+#
+#######################################################################################
+use_local_modulesets = True
+moduleset = ['custom/xorg']
+modules = [ 'xserver']
+# All module sources will be in $HOME/spice/ after the checkout
+checkoutroot = os.path.join(os.environ['HOME'], 'sources')
+# All module binaries will be in $HOME/arm/usr/local after the checkout
+prefix = os.path.join(os.environ['HOME'], 'arm', 'usr', 'local')
+os.environ['ACLOCAL'] = 'aclocal -I ' + os.path.join(prefix, 'share', 'aclocal')
+os.environ['INSTALL'] = os.path.expanduser('/usr/bin/install')
+os.environ['PKG_CONFIG_PATH'] = os.path.join(prefix, 'lib', 'pkgconfig') \
+    + ':' + os.path.join(prefix, 'lib64', 'pkgconfig') \
+    + ':' + os.path.join(prefix, 'share', 'pkgconfig')
+# custom CFLAGS / environment pieces for the build
+os.environ['CFLAGS'] =  '-g -I' + os.path.join(prefix, 'include')
+os.environ['CPPFLAGS'] = '-g -I' + os.path.join(prefix, 'include')
+#rpath is relative to where it is run from - DISCIMAGE 
+os.environ['LDFLAGS'] = ' -L' + os.path.join(prefix, 'lib')
+os.environ['LDFLAGS'] += ' -Wl,--rpath -Wl,' + os.path.join('usr', 'local', 'lib') 
+os.environ['LDFLAGS'] += ' -L' + os.path.join(prefix, 'lib64') 
+os.environ['LDFLAGS'] += ' -Wl,--rpath -Wl,' + os.path.join('usr', 'local', 'lib64')
+# Setup environment for cross compiling
+os.environ['BUILD'] = 'x86_64-unknown-linux-gnu'
+os.environ['HOST'] = 'arm-linux-gnueabihf'
+os.environ['TARGET'] = 'arm-linux-gnueabihf'
+cross_compile_prefix = os.environ['CROSS_COMPILE']
+tools = {'ADDR2LINE': 'addr2line',
+    'AS': 'as', 'CC': 'gcc', 'CPP': 'cpp',
+    'CPPFILT': 'c++filt', 'CXX': 'g++',
+    'GCOV': 'gcov', 'LD': 'ld', 'NM': 'nm',
+    'OBJCOPY': 'objcopy', 'OBJDUMP': 'objdump',
+    'READELF': 'readelf', 'SIZE': 'size',
+    'STRINGS': 'strings', 'AR': 'ar', 
+        'RANLIB': 'ranlib', 'STRIP': 'strip'}
+tools_args = str()
+for tool in tools.keys():
+    fullpath_tool = cross_compile_prefix + tools[tool]
+    os.environ[tool] = fullpath_tool
+autogenargs = ' --disable-static'
+# lots of people really like to always look in /var/log, but change if
+# you want the log files out of place
+autogenargs += ' --with-log-dir=/var/log'
+autogenargs += ' --build='+os.environ['BUILD']
+autogenargs += ' --host='+os.environ['HOST']
+autogenargs += ' --target='+os.environ['TARGET']
+for tool in ('AR', 'RANLIB', 'STRIP', 'AS', 'OBJDUMP', 'NM'):
+    autogenargs += ' '+tool+'="'+os.environ[tool]+'" '
+module_autogenargs['libXfont'] = autogenargs + ' --disable-freetype'
+module_autogenargs['app-xkbcomp'] = autogenargs + ' LIBS="-lxcb -lXau" '
+module_autogenargs['libX11'] = autogenargs + ' --enable-malloc0returnsnull'
+module_autogenargs['libXt'] = autogenargs + ' --disable-install-makestrs --enable-malloc0returnsnull'
+module_autogenargs['libXext'] = autogenargs + ' --enable-malloc0returnsnull'
+module_autogenargs['libXRes'] = autogenargs + ' --enable-malloc0returnsnull'
+module_autogenargs['libXi'] = autogenargs + ' --enable-malloc0returnsnull'
+module_autogenargs['libXv'] = autogenargs + ' --enable-malloc0returnsnull'
+module_autogenargs['libdmx'] = autogenargs + ' --enable-malloc0returnsnull'
+module_autogenargs['libXvMC'] = autogenargs + ' --enable-malloc0returnsnull'
+module_autogenargs['libXxf86vm'] = autogenargs + ' --enable-malloc0returnsnull'
+module_autogenargs['libXfontcache'] = autogenargs + ' --enable-malloc0returnsnull'
+module_autogenargs['mesa-mesa'] = autogenargs + ' --disable-glw --enable-texture-float --enable-gles1 --enable-gles2 --enable-gles2 --enable-xa --enable-osmesa --enable-gbm --enable-sysfs --without-demos --with-dri-drivers="swrast"  LIBS="-lxcb -lXau -lXext"'
+module_autogenargs['xserver'] = autogenargs + ' LIBS="-lfontenc -lxcb"'
+
+module_autogenargs['glib'] = autogenargs + ' ac_cv_type_long_long=yes glib_cv_stack_grows=no glib_cv_uscore=no ac_cv_func_posix_getpwuid_r=yes ac_cv_func_posix_getgrgid_r=yes'
+# module_autogenargs['gobject-introspection'] = autogenargs + ' --without-python'
+# module_autogenargs['atk'] = autogenargs + ' PATH=/usr/bin:$PATH'
+
+# Additional flags for make can be specified here
+# Set makeargs to 'V=1' for verbose build output.
+# makeargs = '-j8'
