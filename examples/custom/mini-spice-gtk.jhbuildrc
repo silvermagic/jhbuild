@@ -6,7 +6,7 @@
 #
 #######################################################################################
 use_local_modulesets = True
-moduleset = ['custom/spice-gtk']
+moduleset = ['custom/mini-spice-gtk']
 modules = [ 'spice-gtk' ]
 # All module sources will be in $HOME/spice/ after the checkout
 checkoutroot = os.path.join(os.environ['HOME'], 'sources')
