@@ -18,7 +18,17 @@
     <pkg-config>libxml-2.0.pc</pkg-config>
     <branch repo="system" version="2.9.1"/>
   </systemmodule>
-  
+
+  <systemmodule id="libpcre">
+    <pkg-config>libpcre.pc</pkg-config>
+    <branch repo="system" version="8.31"/>
+  </systemmodule>
+
+  <systemmodule id="openssl">
+    <pkg-config>libcrypto.pc</pkg-config>
+    <branch repo="system"/>
+  </systemmodule>
+
   <systemmodule id="wayland">
     <pkg-config>wayland-client.pc</pkg-config>
     <pkg-config>wayland-cursor.pc</pkg-config>
@@ -251,16 +261,9 @@
     </systemdependencies>
   </systemmodule>
 
-  <systemmodule id="python2-devel">
-    <pkg-config>python-2.7.pc</pkg-config>
-    <branch repo="system"
-            version="2.7"/>
-  </systemmodule>
-
-  <systemmodule id="python3-devel">
-    <pkg-config>python3.pc</pkg-config>
-    <branch repo="system"
-            version="3.2"/>
+  <systemmodule id="python-devel">
+    <pkg-config>python.pc</pkg-config>
+    <branch repo="system"/>
   </systemmodule>
 
 </moduleset>
