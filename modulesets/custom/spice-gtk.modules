@@ -5,143 +5,55 @@
 <moduleset>
   <repository type="git" name="freedesktop" default="yes" href="git://anongit.freedesktop.org/git"/>
   <repository type="git" name="spice" default="yes" href="git://anongit.freedesktop.org/git/spice"/>
-  <repository type="git" name="wayland" default="yes" href="git://anongit.freedesktop.org/git/wayland"/>      
-  <repository type="git" name="xorg-proto" default="yes" href="git://anongit.freedesktop.org/git/xorg/proto"/>
+  <repository type="git" name="wayland" default="yes" href="git://anongit.freedesktop.org/git/wayland"/>
   <repository type="git" name="gnome" default="yes" href="git://git.gnome.org"/>
   <repository type="git" name="github" href="git://github.com/"/>
-  <repository type="tarball" name="xmlsoft" href="http://xmlsoft.org/sources/"/>
   <repository type="tarball" name="sourceware"  href="http://mirrors.kernel.org/sources.redhat.com/"/>
   <repository type="tarball" name="sourceforge" href="http://dfn.dl.sourceforge.net/sourceforge/"/>
-  <repository type="tarball" name="igj" href="http://www.ijg.org/files/"/>
   <repository type="tarball" name="gnome-http" href="http://download.gnome.org/sources/"/>
   <repository type="tarball" name="ftp.gnome.org" href="http://ftp.gnome.org/pub/gnome/sources/"/>
-  <repository type="tarball" name="expat" href="http://downloads.sourceforge.net/project/expat/"/>
-  <repository type="tarball" name="libpng" href="http://downloads.sourceforge.net/"/>
-  <repository type="tarball" name="libjpeg-turbo" href="http://downloads.sourceforge.net/"/>
   <repository type="tarball" name="gstreamer" href="http://gstreamer.freedesktop.org/src/"/>
+  <repository type="tarball" name="cairo" href="https://www.cairographics.org/releases/"/>
   <repository type="tarball" name="anholt" href="https://github.com/anholt/"/>
 
-  <include href="xorg.modules"/>
-
-  <!--
-  <autotools id="expat" autogen-sh="configure">
-    <branch repo="expat" module="expat/1.95.8/expat-1.95.8.tar.gz" version="1.95.8"
-            size="318349" hash="sha256:c6aaa0b427e775a0fd5a956a75ae41e5110f22760723d9bda316100010e891ca"/>
-  </autotools>
-  -->
-
-  <autotools id="libxml2" autogen-sh="configure">
-    <branch repo="xmlsoft" module="libxml2-2.9.2.tar.gz" version="2.9.2"
-            size="5444991" hash="sha256:5178c30b151d044aefb1b08bf54c3003a0ac55c59c866763997529d60770d5bc"/>
-  </autotools>
-
-  <autotools id="libxslt" autogen-sh="configure">
-    <branch repo="xmlsoft" module="libxslt-1.1.28.tar.gz" version="1.1.28"
-            size="3435907" hash="sha256:5fc7151a57b89c03d7b825df5a0fae0a8d5f05674c0e7cf2937ecec4d54a028c"/>
-    <dependencies>
-      <dep package="libxml2"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="gtk-doc">
-    <branch repo="ftp.gnome.org" module="gtk-doc/1.25/gtk-doc-1.25.tar.xz" version="1.25"
-            size="673184" hash="sha256:1ea46ed400e6501f975acaafea31479cea8f32f911dca4dff036f59e6464fd42"/>
-    <dependencies>
-      <dep package="libxslt"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="libffi" autogen-sh="configure">
-    <branch repo="sourceware" module="libffi/libffi-3.0.13.tar.gz" version="3.0.13"
-            size="845747" hash="sha256:1dddde1400c3bcb7749d398071af88c3e4754058d2d4c0b3696c2f82dc5cf11c">
-      <patch file="libffi-toolexeclibdir.patch" strip="0"/>
-    </branch>
-  </autotools>
-
-  <autotools id="libpng" autogen-sh="configure">
-    <branch repo="libpng" module="libpng/libpng-1.6.24.tar.xz" version="1.6.24"
-            size="977532" hash="sha256:7932dc9e5e45d55ece9d204e90196bbb5f2c82741ccb0f7e10d07d364a6fd6dd"/>
-  </autotools>
-
-  <autotools id="libjpeg" autogen-sh="configure">
-    <branch repo="igj" module="jpegsrc.v9b.tar.gz" version="9b" checkoutdir="jpeg-9b"
-            size="1022609" hash="sha256:240fd398da741669bf3c90366f58452ea59041cacc741a489b99f2f6a0bad052"/>
-  </autotools>
-
-  <autotools id="libjpeg-turbo" autogen-sh="configure">
-    <branch repo="libjpeg-turbo" module="libjpeg-turbo/libjpeg-turbo-1.5.0.tar.gz" version="9b" checkoutdir="libjpeg-turbo-1.5.0"
-            size="1654276" hash="sha256:9f397c31a67d2b00ee37597da25898b03eb282ccd87b135a50a69993b6a2035f"/>
-  </autotools>
-
-  <autotools id="vala-bootstrap" autogen-sh="configure">
-    <branch repo="gnome-http" module="vala/0.20/vala-0.20.1.tar.xz" version="0.20.1" checkoutdir="vala-0.20.1"
-            size="2627808" hash="sha256:9cb7ecd18a23525e401c204d4d08341c7d911cd5d78078eee10b747ecb45e481"/>
-  </autotools>
+  <include href="mini-spice-gtk-sysdeps.modules"/>
 
   <autotools id="pixman">
     <branch repo="freedesktop"/>
   </autotools>
-  
-  <autotools id="cairo" autogenargs="--enable-gobject --enable-xlib=yes --enable-xlib-xrender=yes --enable-xcb=yes --enable-xlib-xcb=yes --enable-xcb-shm=yes --enable-png=yes --enable-gl=yes --enable-egl=yes">
+
+  <autotools id="cairo" autogenargs="--enable-gobject --enable-xlib=yes --enable-xlib-xrender=yes --enable-xcb=yes --enable-xlib-xcb=yes --enable-xcb-shm=yes --enable-png=yes --enable-glesv2=yes --enable-egl=yes">
     <branch repo="freedesktop"/>
     <dependencies>
       <dep package="pixman"/>
-      <dep package="mesa"/>
       <dep package="glib"/>
       <dep package="libpng"/>
       <dep package="libxcb"/>
-      <dep package="libXrender"/>
+      <dep package="libxcb-shm"/>
+      <dep package="libegl1-mesa"/>
+      <dep package="libgl1-mesa"/>
+      <dep package="libgles1-mesa"/>
+      <dep package="libgles2-mesa"/>
+      <dep package="libglu1-mesa"/>
+      <dep package="libglw1-mesa"/>
       <dep package="fontconfig"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="wayland" autogenargs="--with-egl-platforms=wayland,drm,x11">
-    <branch repo="wayland"/>
-    <dependencies>
-      <dep package="libffi"/>
-      <dep package="libxml2"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="wayland-protocols">
-    <branch repo="wayland"/>
-  </autotools>
-
-  <autotools id="weston" autogenargs="--disable-setuid-install">
-    <branch repo="wayland"/>
-    <dependencies>
-      <dep package="wayland-protocols"/>
-      <dep package="wayland"/>
-      <dep package="cairo"/>
-      <dep package="libxkbcommon"/>
-      <dep package="mesa-libGLES"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="xproto">
-    <branch repo="xorg-proto"/>
-    <dependencies>
-      <dep package="util-macros"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="libxkbcommon" autogenargs="--with-xkb-config-root=/usr/share/X11/xkb">
-    <branch repo="github" module="xkbcommon/libxkbcommon.git"/>
-    <dependencies>
-      <dep package="util-macros"/>
-      <dep package="xproto"/>
-      <dep package="kbproto"/>
-      <dep package="libX11"/>    
     </dependencies>
   </autotools>
 
   <autotools id="glib">
     <branch repo="gnome"/>
+    <dependencies>
+      <dep package="libpcre"/>
+      <dep package="python2"/>
+      <dep package="python-devel"/>
+    </dependencies>
   </autotools>
   
   <autotools id="gobject-introspection">
     <branch repo="gnome"/>
     <dependencies>
+      <dep package="flex"/>
+      <dep package="bison"/>
       <dep package="glib"/>
     </dependencies>
   </autotools>
@@ -149,13 +61,14 @@
   <autotools id="atk">
     <branch repo="gnome"/>
     <dependencies>
-      <dep package="gtk-doc"/>
+      <dep package="gtk-doc-tools"/>
     </dependencies>
   </autotools>
 
   <autotools id="harfbuzz">
     <branch repo="freedesktop"/>
     <dependencies>
+      <dep package="ragel"/>
       <dep package="cairo"/>
     </dependencies>
   </autotools>
@@ -171,6 +84,7 @@
     <branch repo="gnome"/>
     <dependencies>
       <dep package="libpng"/>
+      <dep package="libjpeg-turbo"/>
       <dep package="libjpeg"/>
     </dependencies>
   </autotools>
@@ -179,7 +93,8 @@
     <branch repo="gnome"/>
     <dependencies>
       <dep package="glib"/>
-      <dep package="libXtst"/>
+      <dep package="dbus"/>
+      <dep package="xorg-dev"/>
     </dependencies>
   </autotools>
 
@@ -197,6 +112,22 @@
             size="820119" hash="sha256:1d8668b0a259c709899e1c4bab62d756d9002d546ce4f59c9665e2fc5f001a64"/>
   </autotools>
 
+  <autotools id="wayland">
+    <branch repo="wayland"/>
+    <dependencies>
+      <dep package="libffi"/>
+      <dep package="libxml2"/>
+    </dependencies>
+
+  </autotools>
+
+  <autotools id="wayland-protocols">
+    <branch repo="wayland"/>
+    <dependencies>
+      <dep package="wayland"/>
+    </dependencies>
+  </autotools>
+
   <autotools id="gtk+" autogenargs="--enable-wayland-backend --enable-x11-backend">
     <branch repo="gnome"/>
     <dependencies>
@@ -212,46 +143,20 @@
     </dependencies>
   </autotools>
 
-  <autotools id="cogl" autogenargs="--enable-gles2 --enable-wayland-egl-platform">
-    <pkg-config>cogl-1.0.pc</pkg-config>
-    <branch repo="gnome" revision="cogl-1.16"/>
-    <dependencies>
-      <dep package="glib"/>
-      <dep package="pango"/>
-    </dependencies>
-    <suggests>
-      <dep package="gobject-introspection"/>
-    </suggests>
-  </autotools>
-
-  <autotools id="clutter" autogenargs="--enable-wayland-backend --enable-installed-tests">
-    <branch repo="gnome" revision="clutter-1.16"/>
-    <dependencies>
-      <dep package="cogl"/>
-      <dep package="atk"/>
-      <dep package="glib"/>
-      <dep package="cairo"/>
-      <dep package="gobject-introspection"/>
-    </dependencies>
-    <suggests>
-      <dep package="gdk-pixbuf"/>
-    </suggests>
-  </autotools>
-
-  <autotools id="clutter-gtk">
-    <branch repo="gnome" revision="master"/>
-    <dependencies>
-      <dep package="clutter"/>
-      <dep package="gtk"/>
-    </dependencies>
-  </autotools>
-
   <autotools id="spice-protocol">
     <branch repo="spice"/>
   </autotools>
 
   <autotools id="usbredir">
     <branch repo="spice"/>
+    <dependencies>
+      <dep package="libusb1"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="vala-bootstrap" autogen-sh="configure">
+    <branch repo="gnome-http" module="vala/0.20/vala-0.20.1.tar.xz" version="0.20.1" checkoutdir="vala-0.20.1"
+            size="2627808" hash="sha256:9cb7ecd18a23525e401c204d4d08341c7d911cd5d78078eee10b747ecb45e481"/>
   </autotools>
 
   <autotools id="gstreamer" autogen-sh="configure">
@@ -270,15 +175,29 @@
     </dependencies>
   </autotools>
 
+  <autotools id="gnome-common">
+    <branch repo="gnome"/>
+  </autotools>
+
+  <autotools id="gsettings-desktop-schemas" autogenargs="--enable-introspection=yes">
+    <branch repo="gnome"/>
+    <dependencies>
+      <dep package="glib"/>
+      <dep package="gnome-common"/>
+      <dep package="gobject-introspection"/>
+    </dependencies>
+  </autotools>
+
   <autotools id="spice-gtk"  autogenargs="--enable-maintainer-mode --with-gtk=3.0 --enable-vala --enable-usbredir=yes --with-sasl=no --enable-gstaudio --disable-smartcard">
     <branch repo="spice"/>
     <dependencies>
       <dep package="gtk+"/>
       <dep package="spice-protocol"/>
       <dep package="usbredir"/>
+      <dep package="openssl"/>
       <dep package="vala-bootstrap"/>
       <dep package="gst-plugins-base"/>
-      <dep package="libjpeg-turbo"/>
+      <dep package="gsettings-desktop-schemas"/>
     </dependencies>
   </autotools>
 

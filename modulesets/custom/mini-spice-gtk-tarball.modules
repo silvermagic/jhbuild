@@ -3,154 +3,40 @@
 <?xml-stylesheet type="text/xsl" href="moduleset.xsl"?>
 <!-- vim:set ts=2 expandtab: -->
 <moduleset>
-  <repository type="tarball" name="cairo" href="https://www.cairographics.org/releases/"/>
   <repository type="tarball" name="gnome-ftp" href="ftp://ftp.gnome.org/pub/gnome/sources/"/>
-  <repository type="tarball" name="freedesktop-http" href="http://www.freedesktop.org/software/"/>
   <repository type="tarball" name="spice" href="https://www.spice-space.org/download/"/>
-  <repository type="tarball" name="gstreamer" href="http://gstreamer.freedesktop.org/src/"/>
-  <repository type="tarball" name="anholt" href="https://github.com/anholt/"/>
   <repository type="tarball" name="wayland" href="https://wayland.freedesktop.org/releases/"/>
-  <repository type="tarball" name="hicolor" href="http://icon-theme.freedesktop.org/releases/"/>
 
-  <include href="mini-spice-gtk-sysdeps.modules"/>
-
-  <autotools id="pixman">
-    <branch repo="cairo" module="pixman-0.34.0.tar.gz" version="0.34.0"
-            size="878784" hash="sha256:21b6b249b51c6800dc9553b65106e1e37d0e25df942c90531d4c3997aa20a88e"/>
-  </autotools>
-
-  <autotools id="cairo" autogenargs="--enable-gobject --enable-xlib=yes --enable-xlib-xrender=yes --enable-xcb=yes --enable-xlib-xcb=yes --enable-xcb-shm=yes --enable-png=yes --enable-glesv2=yes --enable-egl=yes">
-    <branch repo="cairo" module="cairo-1.14.6.tar.xz" version="1.14.6"
-            size="36040596" hash="sha256:613cb38447b76a93ff7235e17acd55a78b52ea84a9df128c3f2257f8eaa7b252"/>
-    <dependencies>
-      <dep package="pixman"/>
-      <dep package="glib"/>
-      <dep package="libpng"/>
-      <dep package="libxcb"/>
-      <dep package="libxcb-shm"/>
-      <dep package="libegl1-mesa"/>
-      <dep package="libgl1-mesa"/>
-      <dep package="libgles1-mesa"/>
-      <dep package="libgles2-mesa"/>
-      <dep package="libglu1-mesa"/>
-      <dep package="libglw1-mesa"/>
-      <dep package="fontconfig"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="glib">
-    <branch repo="gnome-ftp" module="glib/2.48/glib-2.48.2.tar.xz" version="2.48.2"
-            size="6408644" hash="sha256:f25e751589cb1a58826eac24fbd4186cda4518af772806b666a3f91f66e6d3f4"/>
-    <dependencies>
-      <dep package="libpcre"/>
-      <dep package="python2"/>
-      <dep package="python-devel"/>
-    </dependencies>
-  </autotools>
-  
-  <autotools id="gobject-introspection">
-    <branch repo="gnome-ftp" module="gobject-introspection/1.48/gobject-introspection-1.48.0.tar.xz" version="1.48.0"
-            size="1371308" hash="sha256:fa275aaccdbfc91ec0bc9a6fd0562051acdba731e7d584b64a277fec60e75877"/>
-    <dependencies>
-      <dep package="flex"/>
-      <dep package="bison"/>
-      <dep package="glib"/>
-    </dependencies>
-  </autotools>
-  
-  <autotools id="atk">
-    <branch repo="gnome-ftp" module="atk/2.20/atk-2.20.0.tar.xz" version="2.20.0"
-            size="724200" hash="sha256:493a50f6c4a025f588d380a551ec277e070b28a82e63ef8e3c06b3ee7c1238f0"/>
-    <dependencies>
-      <dep package="gtk-doc-tools"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="harfbuzz">
-    <branch repo="freedesktop-http" module="harfbuzz/release/harfbuzz-1.3.1.tar.bz2" version="1.3.1"
-            size="1358437" hash="sha256:a242206dd119d5e6cc1b2253c116abbae03f9d930cb60b515fb0d248decf89a1"/>
-    <dependencies>
-      <dep package="ragel"/>
-      <dep package="cairo"/>
-    </dependencies>
-  </autotools>
-  
-  <autotools id="pango" autogenargs=" --disable-gtk-doc">
-    <branch repo="gnome-ftp" module="pango/1.40/pango-1.40.2.tar.xz" version="1.40"
-            size="1060408" hash="sha256:90582a02bc89318d205814fc097f2e9dd164d26da5f27c53ea42d583b34c3cd1"/>
-    <dependencies>
-      <dep package="harfbuzz"/>
-      <dep package="gtk-doc-tools"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="gdk-pixbuf" autogenargs="--without-libtiff">
-    <branch repo="gnome-ftp" module="gdk-pixbuf/2.34/gdk-pixbuf-2.34.0.tar.xz" version="2.34"
-            size="2709320" hash="sha256:d55e5b383ee219bd0e23bf6ed4427d56a7db5379729a6e3e0a0e0eba9a8d8879"/>
-    <dependencies>
-      <dep package="libpng"/>
-      <dep package="libjpeg-turbo"/>
-      <dep package="libjpeg"/>
-    </dependencies>
-  </autotools>
-  
-  <autotools id="at-spi2-core">
-    <branch repo="gnome-ftp" module="at-spi2-core/2.20/at-spi2-core-2.20.2.tar.xz" version="2.20.2"
-            size="454124" hash="sha256:88a4de9d43139f13cca531b47b901bc1b56e0ab06ba899126644abd4ac16a143"/>
-    <dependencies>
-      <dep package="glib"/>
-      <dep package="dbus"/>
-      <dep package="xorg-dev"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="at-spi2-atk">
-    <branch repo="gnome-ftp" module="at-spi2-atk/2.20/at-spi2-atk-2.20.1.tar.xz" version="2.20.1"
-            size="309112" hash="sha256:2358a794e918e8f47ce0c7370eee8fc8a6207ff1afe976ec9ff547a03277bf8e"/>
-    <dependencies>
-      <dep package="glib"/>
-      <dep package="atk"/>
-      <dep package="at-spi2-core"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="libepoxy">
-    <branch repo="anholt" module="libepoxy/releases/download/v1.3.1/libepoxy-1.3.1.tar.bz2" version="1.3.1"
-            size="820119" hash="sha256:1d8668b0a259c709899e1c4bab62d756d9002d546ce4f59c9665e2fc5f001a64"/>
-  </autotools>
-
-  <autotools id="wayland">
-    <branch repo="wayland" module="wayland-1.11.0.tar.xz" version="1.11.0"
-            size="374468" hash="sha256:9540925f7928becfdf5e3b84c70757f6589bf1ceef09bea78784d8e4772c0db0"/>
-    <dependencies>
-      <dep package="libffi"/>
-      <dep package="libxml2"/>
-    </dependencies>
-  </autotools>
+  <include href="mini-spice-gtk-3.12-sysdeps.modules"/>
 
   <autotools id="wayland-protocols">
     <branch repo="wayland" module="wayland-protocols-1.7.tar.xz" version="1.7"
             size="113220" hash="sha256:635f2a937d318f1fecb97b54074ca211486e38af943868dd0fa82ea38d091c1f"/>
+    <dependencies>
+      <dep package="wayland"/>
+    </dependencies>
   </autotools>
 
-  <autotools id="adwaita-icon-theme">
-    <branch repo="gnome-ftp" module="adwaita-icon-theme/3.20/adwaita-icon-theme-3.20.tar.xz" version="3.20"
-            size="18821792" hash="sha256:7a0a887349f340dd644032f89d81264b694c4b006bd51af1c2c368d431e7ae35"/>
+  <autotools id="gdk-pixbuf" autogenargs="--without-libtiff">
+    <branch repo="gnome-ftp" module="gdk-pixbuf/2.31/gdk-pixbuf-2.31.7.tar.xz" version="2.31.7"
+            size="2430852" hash="sha256:4736e009168857ce8bb19291f0887c1dc6551cbc3c46d5ffcd034e133e4fd610"/>
+    <dependencies>
+      <dep package="glib"/>
+    </dependencies>
   </autotools>
 
   <autotools id="gtk+" autogenargs="--enable-wayland-backend --enable-x11-backend">
-    <branch repo="gnome-ftp" module="gtk+/3.20/gtk+-3.20.9.tar.xz" version="3.20.9"
-            size="17174872" hash="sha256:83a609ba2f3424b5509e73967c49c67833af466d6f91081b24ee5c64fce6ac17"/>
+    <branch repo="gnome-ftp" module="gtk+/3.12/gtk+-3.12.0.tar.xz" version="3.12.0"
+            size="14738160" hash="sha256:eb69741cd4029b5a1ac9cf04d9de55dcf9e30777a63891750f5d20cc554b6e4b"/>
     <dependencies>
-      <dep package="adwaita-icon-theme"/>
-      <dep package="wayland"/>
+      <dep package="glib"/>
       <dep package="wayland-protocols"/>
-      <dep package="gobject-introspection"/>
+      <dep package="girepository"/>
       <dep package="atk"/>
+      <dep package="atk-bridge"/>
       <dep package="pango"/>
-      <dep package="at-spi2-atk"/>
       <dep package="gdk-pixbuf"/>
-      <dep package="libxkbcommon"/>
+      <dep package="pulseaudio"/>
       <dep package="libepoxy"/>
     </dependencies>
   </autotools>
@@ -168,27 +54,6 @@
     </dependencies>
   </autotools>
 
-  <autotools id="vala" autogen-sh="configure">
-    <branch repo="gnome-ftp" module="vala/0.32/vala-0.32.1.tar.xz" version="0.32.1"
-            size="2759528" hash="sha256:dd0d47e548a34cfb1e4b04149acd082a86414c49057ffb79902eb9a508a161a9"/>
-  </autotools>
-
-  <autotools id="gstreamer" autogen-sh="configure">
-    <branch repo="gstreamer" module="gstreamer/gstreamer-1.8.3.tar.xz" version="1.8.3"
-            size="3711068" hash="sha256:66b37762d4fdcd63bce5a2bec57e055f92420e95037361609900278c0db7c53f"/>
-    <dependencies>
-      <dep package="glib"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="gst-plugins-base" autogen-sh="configure">
-    <branch repo="gstreamer" module="gst-plugins-base/gst-plugins-base-1.8.3.tar.xz" version="1.8.3"
-            size="2939464" hash="sha256:114871d4d63606b4af424a8433cd923e4ff66896b244bb7ac97b9da47f71e79e"/>
-    <dependencies>
-      <dep package="gstreamer"/>
-    </dependencies>
-  </autotools>
-
   <autotools id="spice-gtk"  autogenargs="--enable-maintainer-mode --with-gtk=3.0 --enable-vala --enable-usbredir=yes --with-sasl=no --enable-gstaudio --disable-smartcard">
     <branch repo="spice" module="gtk/spice-gtk-0.32.tar.bz2" version="0.32"
             size="1342742" hash="sha256:4c48f4099335e0cd100854162a44070d34ed73dfcad2115e80c075013b49ee02"/>
@@ -198,7 +63,8 @@
       <dep package="usbredir"/>
       <dep package="openssl"/>
       <dep package="vala"/>
-      <dep package="gst-plugins-base"/>
+      <dep package="gstreamer"/>
+      <dep package="gstreamer-plugins-base"/>
     </dependencies>
   </autotools>
 

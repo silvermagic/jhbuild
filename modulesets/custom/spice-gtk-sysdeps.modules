@@ -1,0 +1,269 @@
+<?xml version="1.0" standalone="no"?> <!--*- mode: nxml -*-->
+<!DOCTYPE moduleset SYSTEM "moduleset.dtd">
+<?xml-stylesheet type="text/xsl" href="moduleset.xsl"?>
+
+<!-- gnome-sysdeps modules. A list of systemmodules. The systemmodule element
+     is used to specify modules that must be provided by the system. -->
+
+<moduleset>
+
+  <repository type="system" name="system"/>
+
+  <systemmodule id="libffi">
+    <pkg-config>libffi.pc</pkg-config>
+    <branch repo="system" version="3.0.13"/>
+  </systemmodule>
+
+  <systemmodule id="libxml2">
+    <pkg-config>libxml-2.0.pc</pkg-config>
+    <branch repo="system" version="2.9.1"/>
+  </systemmodule>
+
+  <systemmodule id="libpcre">
+    <pkg-config>libpcre.pc</pkg-config>
+    <branch repo="system" version="8.31"/>
+  </systemmodule>
+
+  <systemmodule id="openssl">
+    <pkg-config>libcrypto.pc</pkg-config>
+    <branch repo="system"/>
+  </systemmodule>
+
+  <systemmodule id="wayland">
+    <pkg-config>wayland-client.pc</pkg-config>
+    <pkg-config>wayland-cursor.pc</pkg-config>
+    <pkg-config>wayland-server.pc</pkg-config>
+    <pkg-config>wayland-scanner.pc</pkg-config>
+    <branch repo="system" version="1.4.0"/>
+  </systemmodule>
+
+  <systemmodule id="xorg-dev">
+    <branch repo="system" version="7.7"/>
+  </systemmodule>
+
+  <systemmodule id="xutils-dev">
+    <pkg-config>xorg-macros.pc</pkg-config>
+    <branch repo="system" version="1.19.0"/>
+  </systemmodule>
+
+  <systemmodule id="xorg-sgml-doctools">
+    <pkg-config>xorg-sgml-doctools.pc</pkg-config>
+    <branch repo="system" version="1.11"/>
+  </systemmodule>
+
+  <systemmodule id="libpciaccess">
+    <pkg-config>pciaccess.pc</pkg-config>
+    <branch repo="system" version="0.13.2"/>
+  </systemmodule>
+
+  <systemmodule id="libxshmfence">
+    <pkg-config>xshmfence.pc</pkg-config>
+    <branch repo="system" version="1.1"/>
+  </systemmodule>
+
+  <systemmodule id="libxcb">
+    <pkg-config>xcb.pc</pkg-config>
+    <branch repo="system"/>
+  </systemmodule>
+
+  <systemmodule id="libxcb-shm">
+    <pkg-config>xcb-shm.pc</pkg-config>
+    <branch repo="system" version="1.10"/>
+  </systemmodule>
+
+  <systemmodule id="libx11-xcb">
+    <pkg-config>x11-xcb.pc</pkg-config>
+    <branch repo="system" version="1.6.2"/>
+  </systemmodule>
+
+  <systemmodule id="xcb-pthread-stubs">
+    <pkg-config>pthread-stubs.pc</pkg-config>
+    <branch repo="system" version="0.3"/>
+  </systemmodule>
+
+  <systemmodule id="xcb-proto">
+    <pkg-config>xcb-proto.pc</pkg-config>
+    <branch repo="system"/>
+  </systemmodule>
+
+  <systemmodule id="libegl1-mesa">
+    <pkg-config>egl.pc</pkg-config>
+    <branch repo="system" version="10.1.0"/>
+  </systemmodule>
+
+  <systemmodule id="libgl1-mesa">
+    <pkg-config>gl.pc</pkg-config>
+    <branch repo="system" version="10.1.0"/>
+  </systemmodule>
+
+  <systemmodule id="libgles1-mesa">
+    <pkg-config>glesv1_cm.pc</pkg-config>
+    <branch repo="system" version="10.1.0"/>
+  </systemmodule>
+
+  <systemmodule id="libgles2-mesa">
+    <pkg-config>glesv2.pc</pkg-config>
+    <branch repo="system" version="10.1.0"/>
+  </systemmodule>
+
+  <systemmodule id="libglu1-mesa">
+    <pkg-config>glu.pc</pkg-config>
+    <branch repo="system" version="9.0.0"/>
+  </systemmodule>
+
+  <systemmodule id="libglw1-mesa">
+    <pkg-config>glw.pc</pkg-config>
+    <branch repo="system" version="8.0.0"/>
+  </systemmodule>
+
+  <systemmodule id="libjpeg-turbo">
+    <branch repo="system"/>
+    <systemdependencies>
+      <dep type="c_include" name="turbojpeg.h"/>
+    </systemdependencies>
+  </systemmodule>
+
+  <systemmodule id="libjpeg">
+    <branch repo="system"/>
+    <systemdependencies>
+      <dep type="c_include" name="jpeglib.h"/>
+    </systemdependencies>
+  </systemmodule>
+
+  <systemmodule id="libpng">
+    <pkg-config>libpng.pc</pkg-config>
+    <branch repo="system"/>
+  </systemmodule>
+
+  <systemmodule id="freetype2">
+    <pkg-config>freetype2.pc</pkg-config>
+    <branch repo="system"
+            version="2.4.9"/>
+  </systemmodule>
+
+  <systemmodule id="fontconfig">
+    <pkg-config>fontconfig.pc</pkg-config>
+    <branch repo="system"
+            version="2.11.0"/>
+  </systemmodule>
+
+  <systemmodule id="libxkbcommon">
+    <pkg-config>xkbcommon.pc</pkg-config>
+    <branch repo="system" version="0.4.1"/>
+  </systemmodule>
+
+  <systemmodule id="flex">
+    <branch repo="system" version="2.0"/>
+    <systemdependencies>
+      <dep type="path" name="flex"/>
+    </systemdependencies>
+  </systemmodule>
+
+  <systemmodule id="bison">
+    <branch repo="system" version="3.0.2"/>
+    <systemdependencies>
+      <dep type="path" name="bison"/>
+    </systemdependencies>
+  </systemmodule>
+
+  <systemmodule id="zlib">
+    <pkg-config>zlib.pc</pkg-config>
+    <branch repo="system"/>
+  </systemmodule>
+
+  <systemmodule id="libpcre">
+    <pkg-config>libpcre.pc</pkg-config>
+    <branch repo="system" version="8.31"/>
+  </systemmodule>
+
+  <systemmodule id="libudev">
+    <pkg-config>libudev.pc</pkg-config>
+    <branch repo="system"
+            version="143"/>
+  </systemmodule>
+
+  <systemmodule id="llvm">
+    <branch repo="system"/>
+    <systemdependencies>
+      <dep type="c_include" name="llvm-c/Core.h">
+        <!-- Debian -->
+        <altdep type="c_include" name="llvm-c-3.9/llvm-c/Core.h"/>
+        <altdep type="c_include" name="llvm-c-3.8/llvm-c/Core.h"/>
+        <altdep type="c_include" name="llvm-c-3.7/llvm-c/Core.h"/>
+        <altdep type="c_include" name="llvm-c-3.6/llvm-c/Core.h"/>
+        <altdep type="c_include" name="llvm-c-3.5/llvm-c/Core.h"/>
+        <altdep type="c_include" name="llvm-c-3.4/llvm-c/Core.h"/>
+        <!-- FreeBSD -->
+        <altdep type="c_include" name="../llvm39/include/llvm-c/Core.h"/>
+        <altdep type="c_include" name="../llvm38/include/llvm-c/Core.h"/>
+        <altdep type="c_include" name="../llvm37/include/llvm-c/Core.h"/>
+        <altdep type="c_include" name="../llvm36/include/llvm-c/Core.h"/>
+        <altdep type="c_include" name="../llvm35/include/llvm-c/Core.h"/>
+        <altdep type="c_include" name="../llvm34/include/llvm-c/Core.h"/>
+        <altdep type="c_include" name="../llvm-devel/include/llvm-c/Core.h"/>
+      </dep>
+    </systemdependencies>
+  </systemmodule>
+
+  <systemmodule id="ragel">
+    <branch repo="system"/>
+    <systemdependencies>
+      <dep type="path"
+           name="ragel"/>
+    </systemdependencies>
+  </systemmodule>
+
+  <systemmodule id="gperf">
+    <branch repo="system"/>
+    <systemdependencies>
+      <dep type="path" name="gperf"/>
+    </systemdependencies>
+  </systemmodule>
+
+  <systemmodule id="intltool">
+    <branch repo="system"
+            version="0.50"/>
+    <systemdependencies>
+      <dep type="path"
+           name="intltoolize"/>
+    </systemdependencies>
+  </systemmodule>
+
+  <systemmodule id="dbus">
+    <pkg-config>dbus-1.pc</pkg-config>
+    <branch repo="system"
+            version="1.4.10"/>
+  </systemmodule>
+
+  <systemmodule id="libusb1">
+    <pkg-config>libusb-1.0.pc</pkg-config>
+    <branch repo="system" version="1.0.17"/>
+  </systemmodule>
+
+  <systemmodule id="libtool">
+    <branch repo="system"/>
+    <systemdependencies>
+      <dep type="path" name="libtoolize"/>
+    </systemdependencies>
+  </systemmodule>
+
+  <systemmodule id="gtk-doc-tools">
+    <branch repo="system" version="1.20"/>
+    <systemdependencies>
+      <dep type="path" name="gtkdocize"/>
+    </systemdependencies>
+  </systemmodule>
+
+  <systemmodule id="python2">
+    <branch repo="system"/>
+    <systemdependencies>
+      <dep type="path" name="python2"/>
+    </systemdependencies>
+  </systemmodule>
+
+  <systemmodule id="python-devel">
+    <pkg-config>python.pc</pkg-config>
+    <branch repo="system"/>
+  </systemmodule>
+
+</moduleset>
