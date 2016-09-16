@@ -16,7 +16,7 @@
   <repository type="tarball" name="cairo" href="https://www.cairographics.org/releases/"/>
   <repository type="tarball" name="anholt" href="https://github.com/anholt/"/>
 
-  <include href="mini-spice-gtk-sysdeps.modules"/>
+  <include href="spice-gtk-sysdeps.modules"/>
 
   <autotools id="pixman">
     <branch repo="freedesktop"/>

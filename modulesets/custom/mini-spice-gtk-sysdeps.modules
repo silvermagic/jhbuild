@@ -9,6 +9,35 @@
 
   <repository type="system" name="system"/>
 
+  <systemmodule id="gtk-doc-tools">
+    <branch repo="system" version="1.20"/>
+    <systemdependencies>
+      <dep type="path" name="gtkdocize"/>
+    </systemdependencies>
+  </systemmodule>
+
+  <systemmodule id="libegl1-mesa">
+    <pkg-config>egl.pc</pkg-config>
+    <branch repo="system" version="10.1.0"/>
+  </systemmodule>
+
+  <systemmodule id="libjpeg-turbo">
+    <branch repo="system"/>
+    <systemdependencies>
+      <dep type="c_include" name="turbojpeg.h"/>
+    </systemdependencies>
+  </systemmodule>
+
+  <systemmodule id="libpng">
+    <pkg-config>libpng.pc</pkg-config>
+    <branch repo="system"/>
+  </systemmodule>
+
+  <systemmodule id="libxkbcommon">
+    <pkg-config>xkbcommon.pc</pkg-config>
+    <branch repo="system" version="0.4.1"/>
+  </systemmodule>
+
   <systemmodule id="wayland">
     <pkg-config>wayland-client.pc</pkg-config>
     <branch repo="system" version="1.4.0"/>

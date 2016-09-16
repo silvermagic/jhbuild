@@ -7,7 +7,7 @@
   <repository type="tarball" name="spice" href="https://www.spice-space.org/download/"/>
   <repository type="tarball" name="wayland" href="https://wayland.freedesktop.org/releases/"/>
 
-  <include href="mini-spice-gtk-3.12-sysdeps.modules"/>
+  <include href="mini-spice-gtk-sysdeps.modules"/>
 
   <autotools id="wayland-protocols">
     <branch repo="wayland" module="wayland-protocols-1.7.tar.xz" version="1.7"
@@ -22,6 +22,8 @@
             size="2430852" hash="sha256:4736e009168857ce8bb19291f0887c1dc6551cbc3c46d5ffcd034e133e4fd610"/>
     <dependencies>
       <dep package="glib"/>
+      <dep package="libpng"/>
+      <dep package="libjpeg-turbo"/>
     </dependencies>
   </autotools>
 
@@ -36,8 +38,10 @@
       <dep package="atk-bridge"/>
       <dep package="pango"/>
       <dep package="gdk-pixbuf"/>
-      <dep package="pulseaudio"/>
       <dep package="libepoxy"/>
+      <dep package="libxkbcommon"/>
+      <dep package="libegl1-mesa"/>
+      <dep package="gtk-doc-tools"/>
     </dependencies>
   </autotools>
 
