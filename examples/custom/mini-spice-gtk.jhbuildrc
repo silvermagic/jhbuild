@@ -11,7 +11,7 @@ modules = [ 'spice-gtk' ]
 # All module sources will be in $HOME/spice/ after the checkout
 checkoutroot = os.path.join(os.environ['HOME'], 'sources')
 # All module binaries will be in $HOME/arm/usr/local after the checkout
-prefix = os.path.join(os.environ['HOME'], 'gnome', 'usr', 'local')
+prefix = os.path.join(os.environ['HOME'], 'gnome', 'usr', 'local', 'gnome')
 os.environ['ACLOCAL'] = 'aclocal -I ' + os.path.join(prefix, 'share', 'aclocal')
 os.environ['INSTALL'] = os.path.expanduser('/usr/bin/install')
 os.environ['PKG_CONFIG_PATH'] = os.path.join(prefix, 'lib', 'pkgconfig') \
@@ -22,9 +22,9 @@ os.environ['CFLAGS'] =  '-g -I' + os.path.join(prefix, 'include')
 os.environ['CPPFLAGS'] = '-g -I' + os.path.join(prefix, 'include')
 #rpath is relative to where it is run from - DISCIMAGE 
 os.environ['LDFLAGS'] = ' -L' + os.path.join(prefix, 'lib')
-os.environ['LDFLAGS'] += ' -Wl,--rpath -Wl,' + os.path.join('usr', 'local', 'lib') 
+os.environ['LDFLAGS'] += ' -Wl,--rpath -Wl,' + os.path.join('usr', 'local', 'gnome', 'lib') 
 os.environ['LDFLAGS'] += ' -L' + os.path.join(prefix, 'lib64') 
-os.environ['LDFLAGS'] += ' -Wl,--rpath -Wl,' + os.path.join('usr', 'local', 'lib64')
+os.environ['LDFLAGS'] += ' -Wl,--rpath -Wl,' + os.path.join('usr', 'local', 'gnome', 'lib64')
 # Setup environment for cross compiling
 autogenargs = ' --disable-static'
 module_autogenargs['wayland'] = autogenargs + ' --disable-documentation'
